@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Builder</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f2f2f2;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #222;
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .resume {
+            margin-top: 40px;
+            padding: 40px;
+            border: 1px solid #ccc;
+            background: white;
+        }
+
+        .resume-header {
+            text-align: center;
+            border-bottom: 2px solid #222;
+            padding-bottom: 15px;
+        }
+
+        .resume-header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .contact {
+            margin-top: 10px;
+            color: #555;
+        }
+
+        .resume-section {
+            margin-top: 25px;
+        }
+
+        .resume-section h2 {
+            font-size: 20px;
+            color: #222;
+            border-bottom: 1px solid #aaa;
+        }
+
+        .resume-section p {
+            line-height: 1.6;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill {
+            background: #e5e7eb;
+            padding: 6px 12px;
+            border-radius: 5px;
+        }
+
+        .download-btn {
+            display: block;
+            margin: 25px auto;
+            background: #16a34a;
+        }
+
+        .download-btn:hover {
+            background: #15803d;
+        }
+
+        @media print {
+
+            body {
+                background: white;
+            }
+
+            .container>h1,
+            form,
+            .download-btn {
+                display: none;
+            }
+
+            .container {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .resume {
+                border: none;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Resume Builder</h1>
+
+
+
+        <form id="resumeForm">
+
+            <h2>Personal Information</h2>
+
+            <label>Full Name</label>
+            <input type="text" id="name" placeholder="Enter your full name" required>
+
+            <label>Email</label>
+            <input type="email" id="email" placeholder="example@gmail.com" required>
+
+            <label>Phone Number</label>
+            <input type="text" id="phone" placeholder="+91 9876543210">
+
+            <label>Address</label>
+            <input type="text" id="address" placeholder="Your city, state">
+
+            <label>LinkedIn</label>
+            <input type="text" id="linkedin" placeholder="LinkedIn profile">
+
+            <label>GitHub</label>
+            <input type="text" id="github" placeholder="GitHub profile">
+
+            <h2>Career Objective</h2>
+
+            <textarea id="objective" placeholder="Write your career objective"></textarea>
+
+            <h2>Education</h2>
+
+            <label>Degree / Course</label>
+            <input type="text" id="degree" placeholder="BCA">
+
+            <label>College / University</label>
+            <input type="text" id="college" placeholder="Your College Name">
+
+            <label>Year</label>
+            <input type="text" id="year" placeholder="2025 - 2028">
+
+            <label>Percentage / CGPA</label>
+            <input type="text" id="marks" placeholder="8.5 CGPA">
+
+            <h2>Skills</h2>
+
+            <label>Skills</label>
+            <input type="text" id="skills" placeholder="HTML, CSS, JavaScript, Python, C++">
+
+            <h2>Projects</h2>
+
+            <label>Project Name</label>
+            <input type="text" id="projectName" placeholder="Resume Builder">
+
+            <label>Project Description</label>
+            <textarea id="projectDescription" placeholder="Describe your project"></textarea>
+
+            <h2>Experience</h2>
+
+            <label>Experience / Internship</label>
+            <textarea id="experience" placeholder="Company name, role and responsibilities"></textarea>
+
+            <h2>Certifications</h2>
+
+            <label>Certifications</label>
+            <textarea id="certifications" placeholder="Python Certification&#10;AWS Certification"></textarea>
+
+            <button type="submit">
+                Generate Resume
+            </button>
+
+        </form>
+
+
+
+
+        <div class="resume" id="resume">
+
+            <div class="resume-header">
+
+                <h1 id="rName">Your Name</h1>
+
+                <div class="contact">
+
+                    <span id="rEmail">Email</span> |
+                    <span id="rPhone">Phone</span> |
+                    <span id="rAddress">Address</span>
+
+                    <br>
+
+                    <span id="rLinkedin">LinkedIn</span> |
+                    <span id="rGithub">GitHub</span>
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="resume-section">
+
+                <h2>Career Objective</h2>
+
+                <p id="rObjective">
+                    Your career objective will appear here.
+                </p>
+
+            </div>
+
+
+
+
+            <div class="resume-section">
+
+                <h2>Education</h2>
+
+                <p>
+                    <strong id="rDegree">Degree</strong>
+                    <br>
+
+                    <span id="rCollege">College</span>
+                    <br>
+
+                    <span id="rYear">Year</span>
+                    |
+                    <span id="rMarks">CGPA</span>
+                </p>
+
+            </div>
+
+
+
+
+            <div class="resume-section">
+
+                <h2>Skills</h2>
+
+                <div class="skills" id="rSkills">
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="resume-section">
+
+                <h2>Projects</h2>
+
+                <p>
+
+                    <strong id="rProjectName">
+                        Project Name
+                    </strong>
+
+                    <br>
+
+                    <span id="rProjectDescription">
+                        Project description
+                    </span>
+
+                </p>
+
+            </div>
+
+
+
+
+            <div class="resume-section">
+
+                <h2>Experience</h2>
+
+                <p id="rExperience">
+                    Experience details
+                </p>
+
+            </div>
+
+
+
+
+            <div class="resume-section">
+
+                <h2>Certifications</h2>
+
+                <p id="rCertifications">
+                    Certifications
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button class="download-btn" onclick="downloadPDF()">
+
+            Download Resume as PDF
+
+        </button>
+
+    </div>
+
+
+    <script>
+
+        document.getElementById("resumeForm")
+            .addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+
+
+                document.getElementById("rName").innerText =
+                    document.getElementById("name").value;
+
+                document.getElementById("rEmail").innerText =
+                    document.getElementById("email").value;
+
+                document.getElementById("rPhone").innerText =
+                    document.getElementById("phone").value;
+
+                document.getElementById("rAddress").innerText =
+                    document.getElementById("address").value;
+
+                document.getElementById("rLinkedin").innerText =
+                    document.getElementById("linkedin").value;
+
+                document.getElementById("rGithub").innerText =
+                    document.getElementById("github").value;
+
+
+
+
+                document.getElementById("rObjective").innerText =
+                    document.getElementById("objective").value;
+
+
+
+
+                document.getElementById("rDegree").innerText =
+                    document.getElementById("degree").value;
+
+                document.getElementById("rCollege").innerText =
+                    document.getElementById("college").value;
+
+                document.getElementById("rYear").innerText =
+                    document.getElementById("year").value;
+
+                document.getElementById("rMarks").innerText =
+                    document.getElementById("marks").value;
+
+
+
+
+                let skills =
+                    document.getElementById("skills").value;
+
+                let skillArray =
+                    skills.split(",");
+
+                let skillsHTML = "";
+
+                skillArray.forEach(function (skill) {
+
+                    if (skill.trim() !== "") {
+
+                        skillsHTML +=
+                            `<span class="skill">
+                        ${skill.trim()}
+                    </span>`;
+
+                    }
+
+                });
+
+                document.getElementById("rSkills").innerHTML =
+                    skillsHTML;
+
+
+
+
+                document.getElementById("rProjectName").innerText =
+                    document.getElementById("projectName").value;
+
+                document.getElementById("rProjectDescription").innerText =
+                    document.getElementById("projectDescription").value;
+
+
+
+
+                document.getElementById("rExperience").innerText =
+                    document.getElementById("experience").value;
+
+
+
+
+                document.getElementById("rCertifications").innerText =
+                    document.getElementById("certifications").value;
+
+
+
+
+                document.getElementById("resume")
+                    .scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+            });
+
+
+
+
+        function downloadPDF() {
+
+            window.print();
+
+        }
+
+    </script>
+
+</body>
+
+</html>
